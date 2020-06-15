@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   else if (strcmp(argv[1], "-A") == 0)
     print_file("./files/alphabet-extra");
   else if (strcmp(argv[1], "-at") == 0)
-    perform_test("./files/test-alphabet", 9);
+    perform_test("./files/test-alphabet", 10);
   return 0;
 }
 
@@ -57,7 +57,7 @@ void perform_test(char *dir, int count) {
     asked[index] = current_question;
     sprintf(filename, "%s/%d", dir, current_question);
     print_file(filename);
-    fgets(answer, 300, stdin);
+    if (fgets(answer, 300, stdin) == NULL) exit(EXIT_FAILURE);
     answer[strlen(answer) - 1] = '\0';
     sprintf(filename, "%s/%da", dir, current_question);
     file2 = fopen(filename, "r");

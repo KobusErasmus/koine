@@ -1,0 +1,6 @@
+A program to help you learn New Testament Greek
+
+Usage: koine OPTION
+    -a      show alphabet
+    -A      show alphabet with extra details
+    -at     take a test on the alphabet

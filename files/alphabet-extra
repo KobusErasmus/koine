@@ -4,10 +4,10 @@ N=Name, L=Lowercase, U=Uppercase, T=Transliteration
 E=Erasmian pronunciation, M=Modern pronunciation
 
   N       L    U   T              E                M
----------------------------------------------------------------
+--------------------------------------------------------------------------
 Alpha     α    Α   a       f(a)ther
 Beta      β    Β   b       (b)ook            (v)at
-Gamma     γ    Γ   g       (g)oat            (g)oat or (y)ellow
+Gamma     γ    Γ   g       (g)oat            (g)oat or (y)ellow before 'e'
 Delta     δ    Δ   d       (d)og             (th)is
 Epsilon   ε    Ε   e       (e)pic
 Zeta      ζ    Ζ   z       a(dz)e            (z)oo
@@ -35,6 +35,8 @@ The 7 vowels: α, ε, ι, ο, υ, η, ω
 A diphthong is a combination of two vowels pronounced as
 a single sound. There are 8 diphthongs:
 
+        E         M
+-----------------------------------------
 αι   (ai)sle    b(e)t
 αυ   h(ow)      (af)fect or (av)enue
 ει   w(ei)ght   f(ee)t

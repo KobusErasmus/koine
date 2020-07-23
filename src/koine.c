@@ -2,12 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <dirent.h>
 
 char ch;
 FILE *file, *file2;
 void print_file(char *);
 void exit_file_error(void);
-void perform_test(char *, int);
+void perform_test(char *);
+int count_tests(char *);
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -18,10 +20,14 @@ int main(int argc, char *argv[]) {
     print_file("./files/alphabet");
   else if (strcmp(argv[1], "-A") == 0)
     print_file("./files/alphabet-extra");
+  else if (strcmp(argv[1], "-at") == 0)
+    perform_test("./files/test-alphabet");
   else if (strcmp(argv[1], "-c") == 0)
     print_file("./files/cases");
-  else if (strcmp(argv[1], "-at") == 0)
-    perform_test("./files/test-alphabet", 10);
+  else if (strcmp(argv[1], "-ct") == 0)
+    perform_test("./files/test-cases");
+  else if (strcmp(argv[1], "-h") == 0)
+    print_file("./files/usage");
   return 0;
 }
 
@@ -36,7 +42,8 @@ void print_file(char filename[]) {
   fclose(file);
 }
 
-void perform_test(char *dir, int count) {
+void perform_test(char *dir) {
+  int count = count_tests(dir);
   char filename[strlen(dir) + 5];
   char answer[300], correct_answer[300];
   int asked[count];
@@ -80,6 +87,17 @@ void perform_test(char *dir, int count) {
     index++;
   }
   printf("You got %d correct out of %d.\n", score, count);
+}
+
+int count_tests(char *dir_name) {
+  int c = 0;
+  struct dirent *d;
+  DIR *dir = opendir(dir_name);
+  if (dir == NULL) return c;
+  while ((d = readdir(dir)) != NULL) {
+    if (d->d_type == DT_REG && d->d_name[0] != '.') c++;
+  }
+  return (c <= 1 ? 0 : (c / 2));
 }
 
 void exit_file_error() {

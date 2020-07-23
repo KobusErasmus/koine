@@ -5,3 +5,5 @@ Usage: koine OPTION
     -A      show alphabet with extra details
     -at     take a test on the alphabet
     -c      show cases
+    -ct     take a test on the cases
+    -h      show this help file

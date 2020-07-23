@@ -33,5 +33,10 @@ expected=`cat ./files/alphabet-extra`
 result=`./koine_test -A`
 evaluate_result 'Test 3'
 
+#Test 4
+expected=`cat ./files/cases`
+result=`./koine_test -c`
+evaluate_result 'Test 4'
+
 printf "\n"
 rm koine_test

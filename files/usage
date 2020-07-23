@@ -4,3 +4,4 @@ Usage: koine OPTION
     -a      show alphabet
     -A      show alphabet with extra details
     -at     take a test on the alphabet
+    -c      show cases

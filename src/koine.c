@@ -18,6 +18,8 @@ int main(int argc, char *argv[]) {
     print_file("./files/alphabet");
   else if (strcmp(argv[1], "-A") == 0)
     print_file("./files/alphabet-extra");
+  else if (strcmp(argv[1], "-c") == 0)
+    print_file("./files/cases");
   else if (strcmp(argv[1], "-at") == 0)
     perform_test("./files/test-alphabet", 10);
   return 0;

@@ -1,9 +1,12 @@
 A program to help you learn New Testament Greek
 
 Usage: koine OPTION
-    -a      show alphabet
-    -A      show alphabet with extra details
-    -at     take a test on the alphabet
-    -c      show cases
-    -ct     take a test on the cases
-    -h      show this help file
+    -a                   show alphabet
+    -A                   show alphabet with extra details
+    -at                  take a test on the alphabet
+    -c                   show cases
+    -ct                  take a test on the cases
+    -h                   show this help file
+    -v BOOK CHAPTER      show the vocabular for biblical BOOK chapter CHAPTER
+       matthew
+         1

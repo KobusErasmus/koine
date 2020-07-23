@@ -7,38 +7,67 @@
 char ch;
 FILE *file, *file2;
 void print_file(char *);
-void exit_file_error(void);
+void less_file(char *);
+void exit_file_error(char *);
 void perform_test(char *);
 int count_tests(char *);
+void print_vocabulary(char **);
+void exit_with_usage(void);
 
 int main(int argc, char *argv[]) {
-  if (argc < 2) {
-    print_file("./files/usage");
-    exit(EXIT_FAILURE);
-  }
+  if (argc < 2) exit_with_usage();
   if (strcmp(argv[1], "-a") == 0)
     print_file("./files/alphabet");
   else if (strcmp(argv[1], "-A") == 0)
-    print_file("./files/alphabet-extra");
+    less_file("./files/alphabet-extra");
   else if (strcmp(argv[1], "-at") == 0)
     perform_test("./files/test-alphabet");
   else if (strcmp(argv[1], "-c") == 0)
-    print_file("./files/cases");
+    less_file("./files/cases");
   else if (strcmp(argv[1], "-ct") == 0)
     perform_test("./files/test-cases");
   else if (strcmp(argv[1], "-h") == 0)
     print_file("./files/usage");
+  else if (strcmp(argv[1], "-v") == 0) {
+    if (argc < 4) exit_with_usage();
+    print_vocabulary(argv);
+  }
   return 0;
+}
+
+void print_vocabulary(char *argv[]) {
+  char path[200] = "./files/vocabulary/";
+  strcat(path, argv[2]);
+  strcat(path, "/");
+  strcat(path, argv[3]);
+  DIR *dir = opendir(path);
+  if (dir) {
+    strcat(path, "/vocabulary");
+    less_file(path);
+  } else {
+    exit_with_usage();
+  }
 }
 
 void print_file(char filename[]) {
   file = fopen(filename, "r");
   if (file == NULL) {
-    exit_file_error();
+    exit_file_error(filename);
   }
   while ((ch = getc(file)) != EOF) {
     putc(ch, stdout);
   }
+  fclose(file);
+}
+
+void less_file(char filename[]) {
+  file = fopen(filename, "r");
+  if (file == NULL) {
+    exit_file_error(filename);
+  }
+  char cmd[200] = "less ";
+  strcat(cmd, filename);
+  system(cmd);
   fclose(file);
 }
 
@@ -71,7 +100,7 @@ void perform_test(char *dir) {
     sprintf(filename, "%s/%da", dir, current_question);
     file2 = fopen(filename, "r");
     if (file2 == NULL) {
-      exit_file_error();
+      exit_file_error(filename);
     }
     i = 0;
     while ((ch = getc(file2)) != EOF)
@@ -100,7 +129,12 @@ int count_tests(char *dir_name) {
   return (c <= 1 ? 0 : (c / 2));
 }
 
-void exit_file_error() {
-  printf("Error: could not find file\n");
+void exit_file_error(char *path) {
+  printf("Error! Could not find file: %s\n", path);
+  exit(EXIT_FAILURE);
+}
+
+void exit_with_usage() {
+  print_file("./files/usage");
   exit(EXIT_FAILURE);
 }

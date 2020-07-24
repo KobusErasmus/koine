@@ -12,11 +12,15 @@ void exit_file_error(char *);
 void perform_test(char *);
 int count_tests(char *);
 void print_vocabulary(char **);
+void flashcard(char **);
 void exit_with_usage(void);
 
 int main(int argc, char *argv[]) {
   if (argc < 2) exit_with_usage();
-  if (strcmp(argv[1], "-a") == 0)
+  if (strcmp(argv[1], "-f") == 0) {
+    if (argc < 3) exit_with_usage();
+    flashcard(argv);
+  } else if (strcmp(argv[1], "-a") == 0)
     print_file("./files/alphabet");
   else if (strcmp(argv[1], "-A") == 0)
     less_file("./files/alphabet-extra");
@@ -33,6 +37,24 @@ int main(int argc, char *argv[]) {
     print_vocabulary(argv);
   }
   return 0;
+}
+
+void flashcard(char *argv[]) {
+  int num = atoi(argv[2]) * 7;
+  int line_nr = 1;
+  char filename[] = "./files/vocabulary/words.csv";
+  if (num < 1 || num > 771) exit_with_usage();
+  file = fopen(filename, "r");
+  if (file == NULL) {
+    exit_file_error(filename);
+  }
+  while ((ch = getc(file)) != EOF && line_nr <= num) {
+    if (ch == '\n') {
+      line_nr++;
+      printf("Line: %d\n", line_nr);
+    }
+  }
+  fclose(file);
 }
 
 void print_vocabulary(char *argv[]) {

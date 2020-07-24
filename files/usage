@@ -7,6 +7,6 @@ Usage: koine OPTION
     -c                   show cases
     -ct                  take a test on the cases
     -h                   show this help file
+    -f NUM               show seven-word flashcard set NUM, where 1 <= NUM <= 771
     -v BOOK CHAPTER      show the vocabular for biblical BOOK chapter CHAPTER
-       matthew
-         1
+       [matthew] [1]

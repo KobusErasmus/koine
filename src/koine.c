@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <dirent.h>
+#include <unistd.h>
 
 char ch;
 FILE *file, *file2;
@@ -14,6 +15,7 @@ int count_tests(char *);
 void print_vocabulary(char **);
 void flashcard(char **);
 void exit_with_usage(void);
+void update(void);
 
 int main(int argc, char *argv[]) {
   if (argc < 2) exit_with_usage();
@@ -32,6 +34,8 @@ int main(int argc, char *argv[]) {
     perform_test("./files/test-cases");
   else if (strcmp(argv[1], "-h") == 0)
     print_file("./files/usage");
+  else if (strcmp(argv[1], "--update") == 0)
+    update();
   else if (strcmp(argv[1], "-v") == 0) {
     if (argc < 4)
       less_file("./files/vocabulary/words.csv");
@@ -167,6 +171,10 @@ int count_tests(char *dir_name) {
 void exit_file_error(char *path) {
   printf("Error! Could not find file: %s\n", path);
   exit(EXIT_FAILURE);
+}
+
+void update() {
+  system("git pull ; gcc -O3 -Wno-unused-result -o koine ./src/koine.c");
 }
 
 void exit_with_usage() {

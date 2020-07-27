@@ -29,4 +29,5 @@ Usage: koine OPTION
     -f NUM      show the NUM-th seven-word flashcard set.
                 There are 771 flashcard sets, so 1 <= NUM <= 771
     -v          show the vocabulary for the entire New Testament, sorted by frequency
+    --update    perform "git pull ; gcc -O3 -o koine ./src/koine.c"
 ```

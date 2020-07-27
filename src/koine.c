@@ -33,25 +33,38 @@ int main(int argc, char *argv[]) {
   else if (strcmp(argv[1], "-h") == 0)
     print_file("./files/usage");
   else if (strcmp(argv[1], "-v") == 0) {
-    if (argc < 4) exit_with_usage();
+    if (argc < 4)
+      less_file("./files/vocabulary/words.csv");
+    else
     print_vocabulary(argv);
   }
   return 0;
 }
 
 void flashcard(char *argv[]) {
-  int num = atoi(argv[2]) * 7;
-  int line_nr = 1;
+  int input_num = atoi(argv[2]);
+  int num = input_num * 7;
+  int line_nr = 1, line_begin = num - 6, tabc = 0;
   char filename[] = "./files/vocabulary/words.csv";
-  if (num < 1 || num > 771) exit_with_usage();
+  if (input_num < 1 || input_num > 771) exit_with_usage();
   file = fopen(filename, "r");
   if (file == NULL) {
     exit_file_error(filename);
   }
+  //printf("Word\tWords\n----\t-----\n"); 
   while ((ch = getc(file)) != EOF && line_nr <= num) {
+    if (line_begin <= line_nr) {
+      if (tabc >= 1) putchar(ch);
+      if (ch == '\t') tabc++;
+      if (tabc == 2) {
+        getchar();
+        tabc = 1;
+      }
+      if (ch == '\n') putchar('\n');
+    }
     if (ch == '\n') {
       line_nr++;
-      printf("Line: %d\n", line_nr);
+      tabc = 0;
     }
   }
   fclose(file);

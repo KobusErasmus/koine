@@ -20,10 +20,13 @@ Run the program without any arguments to see the options, which
 are currently as follows:
 ```
 Usage: koine OPTION
-    -a      show alphabet
-    -A      show alphabet with extra details
-    -at     take a test on the alphabet
-    -c      show cases
-    -ct     take a test on the cases
-    -h      show this help file
+    -a          show alphabet
+    -A          show alphabet with extra details
+    -at         take a test on the alphabet
+    -c          show cases
+    -ct         take a test on the cases
+    -h          show this help file
+    -f NUM      show the NUM-th seven-word flashcard set.
+                There are 771 flashcard sets, so 1 <= NUM <= 771
+    -v          show the vocabulary for the entire New Testament, sorted by frequency
 ```

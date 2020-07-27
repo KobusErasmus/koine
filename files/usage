@@ -1,12 +1,12 @@
 A program to help you learn New Testament Greek
 
 Usage: koine OPTION
-    -a                   show alphabet
-    -A                   show alphabet with extra details
-    -at                  take a test on the alphabet
-    -c                   show cases
-    -ct                  take a test on the cases
-    -h                   show this help file
-    -f NUM               show seven-word flashcard set NUM, where 1 <= NUM <= 771
-    -v BOOK CHAPTER      show the vocabular for biblical BOOK chapter CHAPTER
-       [matthew] [1]
+    -a          show alphabet
+    -A          show alphabet with extra details
+    -at         take a test on the alphabet
+    -c          show cases
+    -ct         take a test on the cases
+    -h          show this help file
+    -f NUM      show the NUM-th seven-word flashcard set.
+                There are 771 flashcard sets, so 1 <= NUM <= 771
+    -v          show the vocabulary for the entire New Testament, sorted by frequency

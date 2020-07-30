@@ -7,7 +7,9 @@ Usage: koine OPTION
     -c          show cases
     -ct         take a test on the cases
     -h          show this help file
-    -f NUM      show the NUM-th seven-word flashcard set.
+    -f NUM      show the NUM-th seven-word flashcard set
                 There are 771 flashcard sets, so 1 <= NUM <= 771
+                You may also show a range of flashcards with the
+                format 'NUM_BEGIN-NUM_END', e.g., to show cards 2 to 5: koine -f 2-5
     -v          show the vocabulary for the entire New Testament, sorted by frequency
     --update    perform "git pull ; gcc -O3 -o koine ./src/koine.c"

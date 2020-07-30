@@ -46,16 +46,36 @@ int main(int argc, char *argv[]) {
 }
 
 void flashcard(char *argv[]) {
-  int input_num = atoi(argv[2]);
-  int num = input_num * 7;
-  int line_nr = 1, line_begin = num - 6, tabc = 0;
+  char arg1[100], arg2[100];
+  _Bool sp = 0;
+  int i, i1 = 0, i2 = 0;
+  for (i = 0; i <= strlen(argv[2]); i++) {
+    if (argv[2][i] == '-')
+      sp = 1;
+    else if (sp)
+      arg2[i2++] = argv[2][i];
+    else
+      arg1[i1++] = argv[2][i];
+  }
+  arg1[i1] = '\n';
+  arg2[i2] = '\n';
+  int input_num, line_begin, num;
+  if (sp) {
+    input_num = atoi(arg2);
+    num = input_num * 7;
+    line_begin = (atoi(arg1) * 7) - 6;
+  } else {
+    input_num = atoi(arg1);
+    num = input_num * 7;
+    line_begin = num - 6;
+  }
+  int line_nr = 1, tabc = 0;
   char filename[] = "./files/vocabulary/words.csv";
   if (input_num < 1 || input_num > 771) exit_with_usage();
   file = fopen(filename, "r");
   if (file == NULL) {
     exit_file_error(filename);
   }
-  //printf("Word\tWords\n----\t-----\n"); 
   while ((ch = getc(file)) != EOF && line_nr <= num) {
     if (line_begin <= line_nr) {
       if (tabc >= 1) putchar(ch);
